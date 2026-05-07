@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Student Portal - Nichtech</title>
@@ -86,7 +85,7 @@ body{
   margin:auto;
 }
 
-/* CARD */
+/* LOGIN CARD */
 
 .portal-wrapper{
   max-width:500px;
@@ -127,8 +126,6 @@ body{
   margin-bottom:35px;
 }
 
-/* INPUTS */
-
 .input-group{
   margin-bottom:22px;
 }
@@ -154,8 +151,6 @@ body{
   border-color:#16a34a;
 }
 
-/* BUTTON */
-
 .login-btn{
   width:100%;
   padding:18px;
@@ -172,8 +167,6 @@ body{
 .login-btn:hover{
   background:#ea580c;
 }
-
-/* FOOTER */
 
 .portal-footer{
   text-align:center;
@@ -332,23 +325,26 @@ footer{
 
 function toggleMenu(){
 
-  document.getElementById("menu").classList.toggle("show");
+  document.getElementById("menu")
+  .classList.toggle("show");
 
 }
 
 /* LOGIN */
 
-document.getElementById("loginForm").addEventListener("submit", function(e){
+document
+.getElementById("loginForm")
+.addEventListener("submit", function(e){
 
   e.preventDefault();
 
-  const studentId =
+  const studentNo =
     document.getElementById("studentId").value.trim();
 
   const password =
     document.getElementById("password").value.trim();
 
-  if(studentId === "" || password === ""){
+  if(studentNo === "" || password === ""){
 
     alert("Please enter student number and password");
 
@@ -356,28 +352,16 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
 
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbygnG9wDI95JiZ1mK9XzENjm1_ptTQcuvQ6PUd9jUrG6QWID-cFqP-TEJ-yQel87YPxxg/exec", {
+  const url =
+  "https://script.google.com/macros/s/AKfycbygnG9wDI95JiZ1mK9XzENjm1_ptTQcuvQ6PUd9jUrG6QWID-cFqP-TEJ-yQel87YPxxg/exec"
+  + "?studentNo=" + encodeURIComponent(studentNo)
+  + "&password=" + encodeURIComponent(password);
 
-    method:"POST",
+  fetch(url)
 
-    headers:{
-      "Content-Type":"text/plain;charset=utf-8"
-    },
+  .then(response => response.json())
 
-    body:JSON.stringify({
-
-      studentId:studentId,
-      password:password
-
-    })
-
-  })
-
-  .then(response => response.text())
-
-  .then(text => {
-
-    const data = JSON.parse(text);
+  .then(data => {
 
     if(data.status === "success"){
 
@@ -389,7 +373,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
       window.location.href =
         "dashboard.html";
 
-    }else{
+    } else {
 
       alert("Invalid student number or password");
 
