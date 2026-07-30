@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Attachment Registration</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f5f9;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    max-width:500px;
+    margin:auto;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    color:#0b5e2b;
+}
+
+input, textarea{
+
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+
+}
+
+button{
+
+    width:100%;
+    background:#0b5e2b;
+    color:white;
+    padding:15px;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#08451f;
+
+}
+
+#message{
+
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h2>Attachment Registration</h2>
+
+
+<input type="text" id="company" placeholder="Institution Name">
+
+
+<input type="text" id="supervisor" placeholder="Supervisor Name">
+
+
+<input type="text" id="phone" placeholder="Supervisor Phone">
+
+
+<label>Start Date</label>
+
+<input type="date" id="startDate">
+
+
+<label>End Date</label>
+
+<input type="date" id="endDate">
+
+
+<textarea id="address" placeholder="Institution Address"></textarea>
+
+
+<button onclick="submitAttachment()">
+Submit Attachment
+</button>
+
+
+<p id="message"></p>
+
+
+</div>
+
+
+
+<script>
+
+
+function submitAttachment(){
+
+
+const student =
+JSON.parse(localStorage.getItem("studentData"));
+
+
+
+if(!student){
+
+alert("Please login first");
+
+return;
+
+}
+
+
+
+const data = {
+
+
+studentNumber: student.studentNo,
+
+studentName: student.name,
+
+
+company:
+document.getElementById("company").value,
+
+
+supervisor:
+document.getElementById("supervisor").value,
+
+
+phone:
+document.getElementById("phone").value,
+
+
+startDate:
+document.getElementById("startDate").value,
+
+
+endDate:
+document.getElementById("endDate").value,
+
+
+address:
+document.getElementById("address").value
+
+
+};
+
+
+
+document.getElementById("message").innerHTML =
+"Submitting...";
+
+
+
+fetch(
+"https://script.google.com/macros/s/AKfycbzvOuZXwfxgpVi5QE8g13VPDkIAwU19J749ZydyIntYgVp0vpKc0dkyioc8jpA1mJQVEw/exec",
+{
+
+method:"POST",
+
+body:JSON.stringify(data)
+
+}
+
+)
+
+.then(response=>response.json())
+
+.then(result=>{
+
+
+if(result.status=="success"){
+
+
+document.getElementById("message").innerHTML =
+"Attachment submitted successfully!";
+
+
+}
+
+else{
+
+
+document.getElementById("message").innerHTML =
+"Submission failed";
+
+}
+
+
+})
+
+
+.catch(error=>{
+
+
+console.log(error);
+
+document.getElementById("message").innerHTML =
+"Network error";
+
+
+});
+
+
+}
+
+
+
+</script>
+
+
+</body>
+</html>
