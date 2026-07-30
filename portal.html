@@ -1,396 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Student Portal - Nichtech</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-<style>
-
-body{
-  background:#f4f7fb;
-  margin:0;
-  font-family:Arial,sans-serif;
-}
-
-/* TOPBAR */
-
-.topbar{
-  background:white;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
-}
-
-.topbar h2{
-  color:#0b5e2b;
-  margin:0;
-  font-size:28px;
-}
-
-.menu-icon{
-  font-size:32px;
-  cursor:pointer;
-}
-
-/* MENU */
-
-.menu{
-  display:none;
-  background:white;
-  box-shadow:0 3px 10px rgba(0,0,0,0.08);
-}
-
-.menu a{
-  display:block;
-  padding:16px 20px;
-  text-decoration:none;
-  color:#222;
-  border-bottom:1px solid #eee;
-}
-
-.menu a:hover{
-  background:#f4f4f4;
-}
-
-.show{
-  display:block;
-}
-
-/* HERO */
-
-.portal-hero{
-  background:linear-gradient(135deg,#0b5e2b,#16a34a);
-  padding:90px 20px 120px;
-  text-align:center;
-  color:white;
-}
-
-.portal-hero h1{
-  font-size:48px;
-  margin-bottom:15px;
-}
-
-.portal-hero p{
-  font-size:20px;
-  line-height:1.8;
-  max-width:700px;
-  margin:auto;
-}
-
-/* LOGIN CARD */
-
-.portal-wrapper{
-  max-width:500px;
-  margin:-70px auto 60px;
-  padding:20px;
-}
-
-.portal-card{
-  background:white;
-  border-radius:30px;
-  padding:40px 30px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.08);
-}
-
-.portal-icon{
-  width:100px;
-  height:100px;
-  background:#0b5e2b;
-  color:white;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin:auto auto 25px;
-  font-size:45px;
-}
-
-.portal-card h2{
-  text-align:center;
-  font-size:40px;
-  margin-bottom:10px;
-}
-
-.portal-subtitle{
-  text-align:center;
-  color:#666;
-  line-height:1.7;
-  margin-bottom:35px;
-}
-
-.input-group{
-  margin-bottom:22px;
-}
-
-.input-group label{
-  display:block;
-  margin-bottom:10px;
-  font-weight:bold;
-  color:#111;
-}
-
-.input-group input{
-  width:100%;
-  padding:18px;
-  border:2px solid #e5e7eb;
-  border-radius:14px;
-  font-size:16px;
-  outline:none;
-  box-sizing:border-box;
-}
-
-.input-group input:focus{
-  border-color:#16a34a;
-}
-
-.login-btn{
-  width:100%;
-  padding:18px;
-  border:none;
-  border-radius:14px;
-  background:#f97316;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.login-btn:hover{
-  background:#ea580c;
-}
-
-.portal-footer{
-  text-align:center;
-  margin-top:25px;
-  color:#666;
-  font-size:15px;
-}
-
-footer{
-  background:#07132c;
-  color:white;
-  text-align:center;
-  padding:25px;
-  margin-top:40px;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-  .portal-hero h1{
-    font-size:38px;
-  }
-
-  .portal-card{
-    padding:35px 22px;
-  }
-
-}
-
-</style>
-
+  <title>Student Portal - Login</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- TOPBAR -->
-
-<div class="topbar">
-
-  <span class="menu-icon" onclick="toggleMenu()">☰</span>
-
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <h2>Nichtech</h2>
+</header>
 
-</div>
 
 <!-- MENU -->
-
-<div id="menu" class="menu">
+<nav id="menu" class="menu">
 
   <a href="index.html">Home</a>
-
   <a href="about.html">About</a>
-
   <a href="courses.html">Courses</a>
-
   <a href="apply.html">Apply</a>
-
   <a href="gallery.html">Gallery</a>
-
   <a href="contact.html">Contact</a>
-
   <a href="portal.html">Student Portal</a>
 
-</div>
+</nav>
 
-<!-- HERO -->
 
-<section class="portal-hero">
-
-  <h1>Student Portal</h1>
-
-  <p>
-
-    Access your academic profile,
-    student results and institutional information securely online.
-
-  </p>
-
-</section>
 
 <!-- LOGIN CARD -->
 
-<div class="portal-wrapper">
+<section class="card login-card">
 
-  <div class="portal-card">
+  <h2>🎓 Student Portal</h2>
 
-    <div class="portal-icon">
-      🎓
-    </div>
+  <p class="subtitle">
+    Login to access your dashboard
+  </p>
 
-    <h2>Login</h2>
 
-    <p class="portal-subtitle">
+  <input 
+  type="text" 
+  id="studentNo" 
+  placeholder="Student Number">
 
-      Enter your student credentials below
-      to access your dashboard.
 
-    </p>
+  <input 
+  type="password" 
+  id="password" 
+  placeholder="Password">
 
-    <form id="loginForm">
 
-      <div class="input-group">
+  <button 
+  onclick="loginStudent()" 
+  class="primary-btn">
 
-        <label>Student Number</label>
+  Login
 
-        <input
-          type="text"
-          id="studentId"
-          placeholder="Enter student number"
-          required>
+  </button>
 
-      </div>
 
-      <div class="input-group">
+  <p id="message" class="error"></p>
 
-        <label>Password</label>
 
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter password"
-          required>
+</section>
 
-      </div>
 
-      <button type="submit" class="login-btn">
-
-        Login To Dashboard
-
-      </button>
-
-    </form>
-
-    <div class="portal-footer">
-
-      Nichtech Technologies Training College
-
-    </div>
-
-  </div>
-
-</div>
 
 <!-- FOOTER -->
 
 <footer>
 
-  © 2026 Nichtech Technologies Training College
+<p>
+© 2026 Nichtech Technologies Training College
+</p>
 
 </footer>
 
-<!-- SCRIPT -->
+
+
+
+<!-- MENU SCRIPT -->
 
 <script>
 
-function toggleMenu(){
+function toggleMenu() {
 
-  document.getElementById("menu")
-  .classList.toggle("show");
+  var menu = document.getElementById("menu");
+
+  menu.classList.toggle("show");
 
 }
 
-/* LOGIN */
 
-document
-.getElementById("loginForm")
-.addEventListener("submit", function(e){
 
-  e.preventDefault();
+var links = document.querySelectorAll("#menu a");
 
-  const studentNo =
-    document.getElementById("studentId").value.trim();
 
-  const password =
-    document.getElementById("password").value.trim();
+links.forEach(function(link){
 
-  if(studentNo === "" || password === ""){
+  link.addEventListener("click",function(){
 
-    alert("Please enter student number and password");
-
-    return;
-
-  }
-const url =
-"https://script.google.com/macros/s/AKfycbwM5dwST8GJ-1CyWcqP_59FICBw_QPOaNeD_sLSUuZ_fqc8nrQJ_wKhyLH6KWepbuLjpA/exec"
-  + "?studentNo=" + encodeURIComponent(studentNo)
-  + "&password=" + encodeURIComponent(password);
-
-  fetch(url)
-
-  .then(response => response.json())
-
-  .then(data => {
-
-    if(data.status === "success"){
-
-      localStorage.setItem(
-        "studentData",
-        JSON.stringify(data)
-      );
-
-      window.location.href =
-        "dashboard.html";
-
-    } else {
-
-      alert("Invalid student number or password");
-
-    }
-
-  })
-
-  .catch(error => {
-
-    console.log(error);
-
-    alert("Connection error");
+    document.getElementById("menu")
+    .classList.remove("show");
 
   });
 
 });
 
+
 </script>
+
+
+
+
+<!-- LOGIN SCRIPT -->
+
+<script>
+
+
+function loginStudent(){
+
+
+const studentNo =
+document.getElementById("studentNo").value.trim();
+
+
+const password =
+document.getElementById("password").value.trim();
+
+
+
+const message =
+document.getElementById("message");
+
+
+message.innerText="";
+
+
+
+if(!studentNo || !password){
+
+
+message.innerText =
+"Please enter all fields";
+
+
+return;
+
+
+}
+
+
+
+
+// UPDATED GOOGLE APPS SCRIPT URL
+
+const url =
+"https://script.google.com/macros/s/AKfycbzvOuZXwfxgpVi5QE8g13VPDkIAwU19J749ZydyIntYgVp0vpKc0dkyioc8jpA1mJQVEw/exec?studentNo="
++ encodeURIComponent(studentNo)
++ "&password="
++ encodeURIComponent(password);
+
+
+
+message.style.color="white";
+
+message.innerText="Logging in...";
+
+
+
+
+fetch(url)
+
+
+.then(res => res.json())
+
+
+.then(data => {
+
+
+
+if(data.status === "success"){
+
+
+
+localStorage.setItem(
+"studentData",
+JSON.stringify(data)
+);
+
+
+
+window.location.href =
+"dashboard.html";
+
+
+
+}
+
+else{
+
+
+message.style.color="red";
+
+message.innerText =
+"Invalid Student Number or Password";
+
+
+}
+
+
+
+})
+
+
+.catch(error => {
+
+
+console.log(error);
+
+
+message.style.color="red";
+
+
+message.innerText =
+"Network error. Check connection.";
+
+
+});
+
+
+
+}
+
+
+</script>
+
 
 </body>
 </html>
