@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,16 +9,14 @@
 </head>
 
 <body>
-  
-  <!-- TOP BAR -->
 
+  <!-- TOP BAR -->
   <header class="topbar">
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <h2>Nichtech</h2>
   </header>
 
   <!-- MENU -->
-
   <nav id="menu" class="menu">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -30,51 +28,46 @@
   </nav>
 
   <!-- LOGIN CARD -->
-
   <section class="card login-card">
 
-```
-<h2>🎓 Student Portal</h2>
+    <h2>🎓 Student Portal</h2>
 
-<p class="subtitle">Login to access your dashboard</p>
+    <p class="subtitle">Login to access your dashboard</p>
 
-<form id="loginForm">
-  <input
-    type="text"
-    id="studentNo"
-    placeholder="Student Number"
-    autocomplete="username"
-    required
-  >
+    <form id="loginForm">
+      <input
+        type="text"
+        id="studentNo"
+        placeholder="Student Number"
+        autocomplete="username"
+        required
+      >
 
-  <input
-    type="password"
-    id="password"
-    placeholder="Password"
-    autocomplete="current-password"
-    required
-  >
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        autocomplete="current-password"
+        required
+      >
 
-  <button type="submit" id="loginButton" class="primary-btn">
-    Login
-  </button>
-</form>
+      <button type="submit" id="loginButton" class="primary-btn">
+        Login
+      </button>
+    </form>
 
-<p id="message" class="error" role="status" aria-live="polite"></p>
-```
+    <p id="message" class="error" role="status" aria-live="polite"></p>
 
   </section>
 
   <!-- FOOTER -->
-
   <footer>
     <p>© 2026 Nichtech Technologies Training College</p>
   </footer>
 
   <script>
     // GOOGLE APPS SCRIPT WEB APP URL
-    const SCRIPT_URL =
-      https://script.google.com/macros/s/AKfycbxqnBMg28QL5TswtZT4WiaqLJ_rRA-fpnju8Jpo8TD2VyRRXSk8SP55kVI-BE51j8HshQ/exec
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqnBMg28QL5TswtZT4WiaqLJ_rRA-fpnju8Jpo8TD2VyRRXSk8SP55kVI-BE51j8HshQ/exec";
 
     // MENU
     function toggleMenu() {
@@ -87,8 +80,8 @@
       });
     });
 
-    // STUDENT LOGIN
-    document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    // STUDENT LOGIN USING JSONP
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
       event.preventDefault();
 
       const studentNo = document.getElementById("studentNo").value.trim();
@@ -107,37 +100,77 @@
       loginButton.disabled = true;
       loginButton.textContent = "Please wait...";
 
-      try {
-        const url = SCRIPT_URL +
-          "?studentNo=" + encodeURIComponent(studentNo) +
-          "&password=" + encodeURIComponent(password);
+      // Create a unique callback for this login request.
+      const callbackName =
+        "nichtechLoginCallback_" + Date.now() + "_" +
+        Math.floor(Math.random() * 100000);
 
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("The server returned an error.");
-        }
+      const script = document.createElement("script");
 
-        const data = await response.json();
+      const timeout = window.setTimeout(function() {
+        cleanup();
 
-        if (data.status === "success") {
-          localStorage.setItem("studentData", JSON.stringify(data));
-          window.location.href = "dashboard.html";
-        } else {
-          message.style.color = "red";
-          message.textContent = data.message || "Invalid Student Number or Password.";
-        }
-
-      } catch (error) {
-        console.error("Student login error:", error);
         message.style.color = "red";
         message.textContent =
-          "Unable to connect to the student portal. Please check your connection and try again.";
-      } finally {
+          "The request timed out. Please try again.";
+
+        resetButton();
+      }, 20000);
+
+      function cleanup() {
+        window.clearTimeout(timeout);
+        script.remove();
+
+        try {
+          delete window[callbackName];
+        } catch (error) {
+          window[callbackName] = undefined;
+        }
+      }
+
+      function resetButton() {
         loginButton.disabled = false;
         loginButton.textContent = "Login";
       }
+
+      window[callbackName] = function(data) {
+        cleanup();
+
+        if (data && data.success === true && data.status === "success") {
+          localStorage.setItem("studentData", JSON.stringify(data));
+          window.location.href = "dashboard.html";
+          return;
+        }
+
+        message.style.color = "red";
+        message.textContent =
+          data && data.message
+            ? data.message
+            : "Invalid student number or password.";
+
+        resetButton();
+      };
+
+      script.onerror = function() {
+        cleanup();
+
+        message.style.color = "red";
+        message.textContent =
+          "Unable to connect to the student portal. Please try again.";
+
+        resetButton();
+      };
+
+      const url = SCRIPT_URL +
+        "?studentNo=" + encodeURIComponent(studentNo) +
+        "&password=" + encodeURIComponent(password) +
+        "&callback=" + encodeURIComponent(callbackName);
+
+      script.src = url;
+      document.body.appendChild(script);
     });
   </script>
 
 </body>
 </html>
+```
