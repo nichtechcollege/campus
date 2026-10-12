@@ -1,456 +1,528 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Student Dashboard</title>
-
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Dashboard - Nichtech Technologies Training College</title>
 
   <style>
-
-    *{
-      margin:0;
-      padding:0; 
-      box-sizing:border-box;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
 
-    body{
-      background:#f2f5f9;
-      color:#222;
+    body {
+      background: #f2f5f9;
+      color: #222;
     }
 
     /* TOP BAR */
-
-    .topbar{
-      background:#0b5e2b;
-      color:white;
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    .topbar {
+      background: #0b5e2b;
+      color: white;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .topbar h2{
-      font-size:24px;
+    .topbar h2 {
+      font-size: 24px;
     }
 
-    .menu-icon{
-      font-size:28px;
-      cursor:pointer;
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
     }
 
     /* MENU */
-
-    .menu{
-      display:none;
-      background:white;
-      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    .menu {
+      display: none;
+      background: white;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
-    .menu a{
-      display:block;
-      padding:15px 20px;
-      text-decoration:none;
-      color:#333;
-      border-bottom:1px solid #eee;
-      font-size:17px;
+    .menu a {
+      display: block;
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      font-size: 17px;
     }
 
-    .menu a:hover{
-      background:#f4f4f4;
+    .menu a:hover {
+      background: #f4f4f4;
     }
 
-    .show{
-      display:block;
+    .show {
+      display: block;
     }
 
-    /* MAIN CARD */
-
-    .dashboard-container{
-      padding:20px;
+    /* DASHBOARD */
+    .dashboard-container {
+      padding: 20px;
     }
 
-    .dashboard-card{
-      background:white;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    .dashboard-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    /* HEADER */
-
-    .card-header{
-      background:#0b5e2b;
-      color:white;
-      text-align:center;
-      padding:30px 20px;
+    /* COLLEGE HEADER */
+    .card-header {
+      background: #0b5e2b;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
     }
 
-    .logo{
-      width:90px;
-      height:90px;
-      object-fit:cover;
-      border-radius:50%;
-      background:white;
-      padding:5px;
-      margin-bottom:15px;
+    .logo {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: white;
+      padding: 5px;
+      margin-bottom: 15px;
     }
 
-    .college-name{
-      font-size:26px;
-      font-weight:bold;
-      line-height:1.4;
+    .college-name {
+      font-size: 26px;
+      font-weight: bold;
+      line-height: 1.4;
     }
 
-    .portal-title{
-      margin-top:10px;
-      font-size:18px;
-      opacity:0.9;
+    .portal-title {
+      margin-top: 10px;
+      font-size: 18px;
+      opacity: 0.9;
     }
 
-    /* STUDENT INFO */
-
-    .student-section{
-      padding:25px 20px;
+    /* STUDENT INFORMATION */
+    .student-section {
+      padding: 25px 20px;
     }
 
-    .welcome{
-      text-align:center;
-      font-size:30px;
-      font-weight:bold;
-      color:#111;
-      margin-bottom:25px;
+    .welcome {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 25px;
+      overflow-wrap: anywhere;
     }
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:10px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
     }
 
-    table tr:nth-child(even){
-      background:#f8f8f8;
+    table tr:nth-child(even) {
+      background: #f8f8f8;
     }
 
-    table td{
-      padding:16px;
-      border-bottom:1px solid #ddd;
-      font-size:17px;
+    table td {
+      padding: 16px;
+      border-bottom: 1px solid #ddd;
+      font-size: 17px;
+      overflow-wrap: anywhere;
     }
 
-    .label{
-      font-weight:bold;
-      color:#0b5e2b;
-      width:40%;
+    .label {
+      font-weight: bold;
+      color: #0b5e2b;
+      width: 40%;
     }
 
-    /* RESULTS */
-
-    .results-box{
-      margin-top:30px;
-      background:#f8fafc;
-      border-left:5px solid #0b5e2b;
-      padding:20px;
-      border-radius:10px;
+    /* RESULTS AND FINAL STATUS */
+    .results-box {
+      margin-top: 30px;
+      background: #f8fafc;
+      border-left: 5px solid #0b5e2b;
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    .results-box h3{
-      color:#0b5e2b;
-      margin-bottom:15px;
-      font-size:24px;
+    .results-box h3 {
+      color: #0b5e2b;
+      margin-bottom: 15px;
+      font-size: 24px;
     }
 
-    .results-text{
-      font-size:18px;
-      line-height:1.6;
-      color:#333;
+    .results-text {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+      overflow-wrap: anywhere;
     }
 
-    /* BUTTON */
-
-    .btn-area{
-      padding:20px;
-      text-align:center;
+    .status-message {
+      margin-top: 15px;
+      font-size: 17px;
+      line-height: 1.6;
+      color: #333;
+      overflow-wrap: anywhere;
     }
 
-    .logout-btn{
-      background:#d62828;
-      color:white;
-      border:none;
-      padding:15px 30px;
-      border-radius:10px;
-      font-size:18px;
-      cursor:pointer;
-      width:100%;
+    /* BUTTONS */
+    .btn-area {
+      padding: 20px;
+      text-align: center;
     }
 
-    .logout-btn:hover{
-      background:#b71c1c;
+    .action-btn {
+      background: #0b5e2b;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      width: 100%;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      background: #084820;
+    }
+
+    .logout-btn {
+      background: #d62828;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .logout-btn:hover {
+      background: #b71c1c;
     }
 
     /* FOOTER */
-
-    .footer{
-      text-align:center;
-      padding:20px;
-      font-size:14px;
-      color:#777;
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
     }
 
+    /* MOBILE RESPONSIVENESS */
+    @media (max-width: 600px) {
+      .dashboard-container {
+        padding: 12px;
+      }
+
+      .student-section {
+        padding: 20px 12px;
+      }
+
+      .college-name {
+        font-size: 22px;
+      }
+
+      .welcome {
+        font-size: 24px;
+      }
+
+      table td {
+        padding: 12px 8px;
+        font-size: 15px;
+      }
+
+      .label {
+        width: 42%;
+      }
+
+      .results-box {
+        padding: 15px;
+      }
+
+      .results-box h3 {
+        font-size: 21px;
+      }
+
+      .results-text {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div
+      class="menu-icon"
+      onclick="toggleMenu()"
+      role="button"
+      tabindex="0"
+      aria-label="Toggle navigation menu"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleMenu();}"
+    >☰</div>
 
-<header class="topbar">
+    <h2>Student Dashboard</h2>
+  </header>
 
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <!-- MENU -->
+  <nav id="menu" class="menu">
+    <a href="index.html">Home</a>
+    <a href="portal.html">Student Portal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <h2>Student Dashboard</h2>
+  <!-- DASHBOARD -->
+  <div class="dashboard-container">
 
-</header>
+    <div class="dashboard-card">
 
-<!-- MENU -->
+      <!-- COLLEGE HEADER -->
+      <div class="card-header">
+        <img
+          src="images/logo.png"
+          class="logo"
+          alt="Nichtech College Logo"
+        >
 
-<nav id="menu" class="menu">
+        <div class="college-name">
+          NICHTECH TECHNOLOGIES<br>
+          TRAINING COLLEGE
+        </div>
 
-  <a href="index.html">Home</a>
-
-  <a href="portal.html">Student Portal</a>
-
-  <a href="contact.html">Contact</a>
-
-</nav>
-
-<!-- DASHBOARD -->
-
-<div class="dashboard-container">
-
-  <div class="dashboard-card">
-
-    <!-- HEADER -->
-
-    <div class="card-header">
-
-      <!-- REPLACE logo.png WITH YOUR LOGO -->
-
-      <img src="images/logo.png" class="logo">
-
-      <div class="college-name">
-        NICHTECH TECHNOLOGIES<br>
-        TRAINING COLLEGE
+        <div class="portal-title">
+          Official Student Portal
+        </div>
       </div>
 
-      <div class="portal-title">
-        Official Student Portal
-      </div>
+      <!-- STUDENT INFORMATION -->
+      <div class="student-section">
 
-    </div>
+        <div class="welcome" id="welcomeName">
+          Welcome Student
+        </div>
 
-    <!-- STUDENT INFO -->
+        <table>
+          <tbody>
+            <tr>
+              <td class="label">Student Number</td>
+              <td id="studentId"></td>
+            </tr>
 
-    <div class="student-section">
+            <tr>
+              <td class="label">Program</td>
+              <td id="program"></td>
+            </tr>
 
-      <div class="welcome" id="welcomeName">
-        Welcome Student
-      </div>
+            <tr>
+              <td class="label">Intake</td>
+              <td id="intake"></td>
+            </tr>
 
-      <table>
+            <tr>
+              <td class="label">Academic Year</td>
+              <td id="year"></td>
+            </tr>
 
-        <tr>
-          <td class="label">Student Number</td>
-          <td id="studentId"></td>
-        </tr>
+            <tr>
+              <td class="label">Duration</td>
+              <td id="duration"></td>
+            </tr>
 
-        <tr>
-          <td class="label">Program</td>
-          <td id="program"></td>
-        </tr>
+            <tr>
+              <td class="label">Sponsor</td>
+              <td id="sponsor"></td>
+            </tr>
 
-        <tr>
-          <td class="label">Intake</td>
-          <td id="intake"></td>
-        </tr>
+            <tr>
+              <td class="label">Outstanding Balance</td>
+              <td id="balance"></td>
+            </tr>
+          </tbody>
+        </table>
 
-        <tr>
-          <td class="label">Academic Year</td>
-          <td id="year"></td>
-        </tr>
+        <!-- RESULTS -->
+        <div class="results-box">
+          <h3>Results</h3>
 
-        <tr>
-          <td class="label">Duration</td>
-          <td id="duration"></td>
-        </tr>
+          <div class="results-text" id="results">
+            Results not available
+          </div>
+        </div>
 
-        <tr>
-          <td class="label">Sponsor</td>
-          <td id="sponsor"></td>
-        </tr>
+        <!-- FINAL STATUS -->
+        <div class="results-box">
+          <h3>Final Status</h3>
 
-        <tr>
-          <td class="label">Outstanding Balance</td>
-          <td id="balance"></td>
-        </tr>
+          <div class="results-text" id="finalStatus">
+            Status not available
+          </div>
 
-      </table>
+          <p class="status-message" id="statusMessage" aria-live="polite"></p>
+        </div>
 
-      <!-- RESULTS -->
+        <!-- INDUSTRIAL ATTACHMENT -->
+        <div class="results-box">
+          <h3>Industrial Attachment</h3>
 
-      <div class="results-box">
+          <div class="results-text">
+            Submit your attachment details here.
+          </div>
 
-        <h3>Results</h3>
+          <br>
 
-        <div class="results-text" id="results">
-          Results not available
+          <button
+            type="button"
+            class="action-btn"
+            onclick="window.location.href='attachment.html'"
+          >
+            Attachment Registration
+          </button>
+        </div>
+
+        <!-- DIGITAL LIBRARY -->
+        <div class="results-box">
+          <h3>Digital Library</h3>
+
+          <div class="results-text">
+            Access notes, books, and learning materials.
+          </div>
+
+          <br>
+
+          <button
+            type="button"
+            class="action-btn"
+            onclick="window.open('https://sites.google.com/view/nichtechcollegee-library?usp=sharing', '_blank', 'noopener,noreferrer')"
+          >
+            Open Digital Library
+          </button>
         </div>
 
       </div>
 
-    </div>
-    <!-- ATTACHMENT REGISTRATION -->
-
-<div class="results-box">
-
-    <h3>Industrial Attachment</h3>
-
-    <div class="results-text">
-        Submit your attachment details here.
-    </div>
-
-    <br>
-
-    <button
-        onclick="window.location.href='attachment.html'"
-        style="
-        background:#0b5e2b;
-        color:white;
-        border:none;
-        padding:15px;
-        border-radius:10px;
-        width:100%;
-        font-size:18px;
-        cursor:pointer;">
-
-        Attachment Registration
-
-    </button>
-
-</div>
-    <!-- DIGITAL LIBRARY -->
-
-<div class="results-box">
-
-    <h3>Digital Library</h3>
-
-    <div class="results-text">
-        Access notes, books, and learning materials.
-    </div>
-
-    <br>
-
-    <button
-        onclick="window.open(https://sites.google.com/view/nichtechcollegee-library?usp=sharing', '_blank')"
-        style="
-        background:#0b5e2b;
-        color:white;
-        border:none;
-        padding:15px;
-        border-radius:10px;
-        width:100%;
-        font-size:18px;
-        cursor:pointer;
-        ">
-
-        Open Digital Library
-
-    </button>
-
-</div>
-
-    <!-- BUTTON -->
-
-    <div class="btn-area">
-
-      <button class="logout-btn" onclick="logout()">
-        Logout
-      </button>
+      <!-- LOGOUT -->
+      <div class="btn-area">
+        <button
+          type="button"
+          class="logout-btn"
+          onclick="logout()"
+        >
+          Logout
+        </button>
+      </div>
 
     </div>
-
   </div>
 
-</div>
+  <!-- FOOTER -->
+  <div class="footer">
+    © 2026 Nichtech Technologies Training College
+  </div>
 
-<!-- FOOTER -->
+  <!-- JAVASCRIPT -->
+  <script>
+    // NAVIGATION MENU
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
 
-<div class="footer">
-  © 2026 Nichtech Technologies Training College
-</div>
+    document.querySelectorAll("#menu a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        document.getElementById("menu").classList.remove("show");
+      });
+    });
 
-<!-- SCRIPT -->
+    // LOAD STUDENT DATA
+    let data = null;
 
-<script>
+    try {
+      data = JSON.parse(localStorage.getItem("studentData"));
+    } catch (error) {
+      console.error("Unable to read student data:", error);
+    }
 
-function toggleMenu() {
+    if (!data || data.status !== "success") {
+      window.location.replace("portal.html");
+    } else {
 
-  document.getElementById("menu").classList.toggle("show");
+      // STUDENT INFORMATION
+      document.getElementById("welcomeName").innerText =
+        "Welcome " + (data.name || "Student");
 
-}
+      document.getElementById("studentId").innerText =
+        data.studentId || "";
 
-// LOAD STUDENT DATA
+      document.getElementById("program").innerText =
+        data.program || "";
 
-const data = JSON.parse(localStorage.getItem("studentData"));
+      document.getElementById("intake").innerText =
+        data.intake || "";
 
-if(!data){
+      document.getElementById("year").innerText =
+        data.year || "";
 
-  window.location.href = "portal.html";
+      document.getElementById("duration").innerText =
+        data.duration || "";
 
-}
-else{
+      document.getElementById("sponsor").innerText =
+        data.sponsor || "";
 
-  document.getElementById("welcomeName").innerText =
-    "Welcome " + (data.name || "Student");
+      document.getElementById("balance").innerText =
+        data.balance || "";
 
-  document.getElementById("studentId").innerText =
-    data.studentId || "";
+      // RESULTS
+      document.getElementById("results").innerText =
+        data.results || "Results not released";
 
-  document.getElementById("program").innerText =
-    data.program || "";
+      // FINAL STATUS
+      const rawStatus = String(data.finalStatus || "").trim();
+      const finalStatus = rawStatus.toUpperCase();
 
-  document.getElementById("intake").innerText =
-    data.intake || "";
+      const finalStatusElement =
+        document.getElementById("finalStatus");
 
-  document.getElementById("year").innerText =
-    data.year || "";
+      const statusMessageElement =
+        document.getElementById("statusMessage");
 
-  document.getElementById("duration").innerText =
-    data.duration || "";
+      if (finalStatus === "GRADUANT") {
 
-  document.getElementById("sponsor").innerText =
-    data.sponsor || "";
+        finalStatusElement.innerText = "GRADUANT";
 
-  document.getElementById("balance").innerText =
-    data.balance || "";
+        statusMessageElement.innerText =
+          "CONGRATULATIONS! SEE YOU ON THE GRADUATION DAY. " +
+          "THE DATE WILL BE COMMUNICATED TO YOU VERY SOON.";
 
-  document.getElementById("results").innerText =
-    data.results || "Results not released";
+      } else if (finalStatus === "REPEAT COURSE") {
 
-}
+        finalStatusElement.innerText = "REPEAT COURSE";
 
-// LOGOUT
+        statusMessageElement.innerText =
+          "Please contact the college administration for further guidance.";
 
-function logout(){
+      } else {
 
-  localStorage.clear();
+        finalStatusElement.innerText = "PENDING";
 
-  window.location.href = "portal.html";
+        statusMessageElement.innerText =
+          "Your final status is pending. Please check again later.";
+      }
+    }
 
-}
-
-</script>
+    // LOGOUT
+    function logout() {
+      localStorage.removeItem("studentData");
+      window.location.href = "portal.html";
+    }
+  </script>
 
 </body>
 </html>
