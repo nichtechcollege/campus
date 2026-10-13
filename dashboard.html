@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,7 +19,6 @@
       color: #222;
     }
 
-    /* TOP BAR */
     .topbar {
       background: #0b5e2b;
       color: white;
@@ -38,7 +38,6 @@
       cursor: pointer;
     }
 
-    /* MENU */
     .menu {
       display: none;
       background: white;
@@ -62,7 +61,6 @@
       display: block;
     }
 
-    /* DASHBOARD */
     .dashboard-container {
       padding: 20px;
     }
@@ -74,7 +72,6 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    /* COLLEGE HEADER */
     .card-header {
       background: #0b5e2b;
       color: white;
@@ -104,7 +101,6 @@
       opacity: 0.9;
     }
 
-    /* STUDENT INFORMATION */
     .student-section {
       padding: 25px 20px;
     }
@@ -141,7 +137,6 @@
       width: 40%;
     }
 
-    /* RESULTS AND FINAL STATUS */
     .results-box {
       margin-top: 30px;
       background: #f8fafc;
@@ -171,7 +166,6 @@
       overflow-wrap: anywhere;
     }
 
-    /* BUTTONS */
     .btn-area {
       padding: 20px;
       text-align: center;
@@ -192,6 +186,11 @@
       background: #084820;
     }
 
+    .action-btn:disabled {
+      background: #777;
+      cursor: wait;
+    }
+
     .logout-btn {
       background: #d62828;
       color: white;
@@ -207,7 +206,6 @@
       background: #b71c1c;
     }
 
-    /* FOOTER */
     .footer {
       text-align: center;
       padding: 20px;
@@ -215,7 +213,6 @@
       color: #777;
     }
 
-    /* MOBILE RESPONSIVENESS */
     @media (max-width: 600px) {
       .dashboard-container {
         padding: 12px;
@@ -255,11 +252,13 @@
       }
     }
   </style>
+
 </head>
 
 <body>
 
   <!-- TOP BAR -->
+
   <header class="topbar">
     <div
       class="menu-icon"
@@ -270,10 +269,14 @@
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleMenu();}"
     >☰</div>
 
-    <h2>Student Dashboard</h2>
+```
+<h2>Student Dashboard</h2>
+```
+
   </header>
 
   <!-- MENU -->
+
   <nav id="menu" class="menu">
     <a href="index.html">Home</a>
     <a href="portal.html">Student Portal</a>
@@ -281,179 +284,193 @@
   </nav>
 
   <!-- DASHBOARD -->
-  <div class="dashboard-container">
 
+  <div class="dashboard-container">
     <div class="dashboard-card">
 
-      <!-- COLLEGE HEADER -->
-      <div class="card-header">
-        <img
-          src="images/logo.png"
-          class="logo"
-          alt="Nichtech College Logo"
-        >
+```
+  <!-- COLLEGE HEADER -->
+  <div class="card-header">
+    <img
+      src="images/logo.png"
+      class="logo"
+      alt="Nichtech College Logo"
+    >
 
-        <div class="college-name">
-          NICHTECH TECHNOLOGIES<br>
-          TRAINING COLLEGE
-        </div>
+    <div class="college-name">
+      NICHTECH TECHNOLOGIES<br>
+      TRAINING COLLEGE
+    </div>
 
-        <div class="portal-title">
-          Official Student Portal
-        </div>
-      </div>
-
-      <!-- STUDENT INFORMATION -->
-      <div class="student-section">
-
-        <div class="welcome" id="welcomeName">
-          Welcome Student
-        </div>
-
-        <table>
-          <tbody>
-            <tr>
-              <td class="label">Student Number</td>
-              <td id="studentId"></td>
-            </tr>
-
-            <tr>
-              <td class="label">Program</td>
-              <td id="program"></td>
-            </tr>
-
-            <tr>
-              <td class="label">Intake</td>
-              <td id="intake"></td>
-            </tr>
-
-            <tr>
-              <td class="label">Academic Year</td>
-              <td id="year"></td>
-            </tr>
-
-            <tr>
-              <td class="label">Duration</td>
-              <td id="duration"></td>
-            </tr>
-
-            <tr>
-              <td class="label">Sponsor</td>
-              <td id="sponsor"></td>
-            </tr>
-
-            <tr>
-              <td class="label">Outstanding Balance</td>
-              <td id="balance"></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- RESULTS -->
-        <div class="results-box">
-          <h3>Results</h3>
-
-          <div class="results-text" id="results">
-            Results not available
-          </div>
-        </div>
-
-        <!-- FINAL STATUS -->
-        <div class="results-box">
-          <h3>Final Status</h3>
-
-          <div class="results-text" id="finalStatus">
-            Status not available
-          </div>
-
-          <p class="status-message" id="statusMessage" aria-live="polite"></p>
-        </div>
-
-        <!-- INDUSTRIAL ATTACHMENT -->
-        <div class="results-box">
-          <h3>Industrial Attachment</h3>
-
-          <div class="results-text">
-            Submit your attachment details here.
-          </div>
-
-          <br>
-
-          <button
-            type="button"
-            class="action-btn"
-            onclick="window.location.href='attachment.html'"
-          >
-            Attachment Registration
-          </button>
-        </div>
-
-        <!-- DIGITAL LIBRARY -->
-        <div class="results-box">
-          <h3>Digital Library</h3>
-
-          <div class="results-text">
-            Access notes, books, and learning materials.
-            <!-- TRANSCRIPT DOWNLOAD -->
-<div class="results-box">
-  <h3>Academic Transcript</h3>
-
-  <div class="results-text">
-    Download your official academic transcript as a PDF.
-  </div>
-
-  <br>
-
-  <button
-    type="button"
-    class="action-btn"
-    onclick="downloadTranscript()"
-  >
-    Download My Transcript
-  </button>
-
-  <p
-    id="transcriptMessage"
-    class="status-message"
-    aria-live="polite"
-  ></p>
-</div>
-          </div>
-
-          <br>
-
-          <button
-            type="button"
-            class="action-btn"
-            onclick="window.open('https://sites.google.com/view/nichtechcollegee-library?usp=sharing', '_blank', 'noopener,noreferrer')"
-          >
-            Open Digital Library
-          </button>
-        </div>
-
-      </div>
-
-      <!-- LOGOUT -->
-      <div class="btn-area">
-        <button
-          type="button"
-          class="logout-btn"
-          onclick="logout()"
-        >
-          Logout
-        </button>
-      </div>
-
+    <div class="portal-title">
+      Official Student Portal
     </div>
   </div>
 
+  <!-- STUDENT INFORMATION -->
+  <div class="student-section">
+
+    <div class="welcome" id="welcomeName">
+      Welcome Student
+    </div>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="label">Student Number</td>
+          <td id="studentId"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Program</td>
+          <td id="program"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Intake</td>
+          <td id="intake"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Academic Year</td>
+          <td id="year"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Duration</td>
+          <td id="duration"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Sponsor</td>
+          <td id="sponsor"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Outstanding Balance</td>
+          <td id="balance"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- RESULTS -->
+    <div class="results-box">
+      <h3>Results</h3>
+      <div class="results-text" id="results">
+        Results not available
+      </div>
+    </div>
+
+    <!-- FINAL STATUS -->
+    <div class="results-box">
+      <h3>Final Status</h3>
+
+      <div class="results-text" id="finalStatus">
+        Status not available
+      </div>
+
+      <p
+        class="status-message"
+        id="statusMessage"
+        aria-live="polite"
+      ></p>
+    </div>
+
+    <!-- INDUSTRIAL ATTACHMENT -->
+    <div class="results-box">
+      <h3>Industrial Attachment</h3>
+
+      <div class="results-text">
+        Submit your attachment details here.
+      </div>
+
+      <br>
+
+      <button
+        type="button"
+        class="action-btn"
+        onclick="window.location.href='attachment.html'"
+      >
+        Attachment Registration
+      </button>
+    </div>
+
+    <!-- DIGITAL LIBRARY -->
+    <div class="results-box">
+      <h3>Digital Library</h3>
+
+      <div class="results-text">
+        Access notes, books, and learning materials.
+      </div>
+
+      <br>
+
+      <button
+        type="button"
+        class="action-btn"
+        onclick="window.open('https://sites.google.com/view/nichtechcollegee-library?usp=sharing', '_blank', 'noopener,noreferrer')"
+      >
+        Open Digital Library
+      </button>
+    </div>
+
+    <!-- ACADEMIC TRANSCRIPT -->
+    <div class="results-box">
+      <h3>Academic Transcript</h3>
+
+      <div class="results-text">
+        Download your individual academic transcript as a PDF.
+      </div>
+
+      <br>
+
+      <button
+        type="button"
+        class="action-btn"
+        id="transcriptButton"
+        onclick="downloadTranscript()"
+      >
+        Download My Transcript
+      </button>
+
+      <p
+        id="transcriptMessage"
+        class="status-message"
+        aria-live="polite"
+      ></p>
+    </div>
+
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="btn-area">
+    <button
+      type="button"
+      class="logout-btn"
+      onclick="logout()"
+    >
+      Logout
+    </button>
+  </div>
+
+</div>
+```
+
+  </div>
+
   <!-- FOOTER -->
+
   <div class="footer">
     © 2026 Nichtech Technologies Training College
   </div>
 
   <!-- JAVASCRIPT -->
+
   <script>
+    // APPS SCRIPT WEB APP URL
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbwM5dwST8GJ-1CyWcqP_59FICBw_QPOaNeD_sLSUuZ_fqc8nrQJ_wKhyLH6KWepbuLjpA/exec";
+
     // NAVIGATION MENU
     function toggleMenu() {
       document.getElementById("menu").classList.toggle("show");
@@ -540,64 +557,78 @@
           "Your final status is pending. Please check again later.";
       }
     }
-// DOWNLOAD STUDENT TRANSCRIPT
-function downloadTranscript() {
-  if (!data || data.status !== "success") {
-    window.location.replace("portal.html");
-    return;
-  }
 
-  const studentNo = String(data.studentId || "").trim();
-  const message = document.getElementById("transcriptMessage");
+    // DOWNLOAD STUDENT TRANSCRIPT
+    function downloadTranscript() {
+      if (!data || data.status !== "success") {
+        window.location.replace("portal.html");
+        return;
+      }
 
-  if (!studentNo) {
-    message.innerText =
-      "Your student number could not be identified. Please log in again.";
-    return;
-  }
+      const studentNo = String(data.studentId || "").trim();
+      const message = document.getElementById("transcriptMessage");
+      const button = document.getElementById("transcriptButton");
 
-  const password = prompt(
-    "Enter your student portal password to verify your identity:"
-  );
+      if (!studentNo) {
+        message.innerText =
+          "Your student number could not be identified. Please log in again.";
+        return;
+      }
 
-  if (password === null) {
-    return;
-  }
+      const password = prompt(
+        "Enter your student portal password to verify your identity:"
+      );
 
-  if (!password.trim()) {
-    message.innerText = "Please enter your password.";
-    return;
-  }
+      if (password === null) {
+        return;
+      }
 
-  message.innerText = "Opening your transcript download...";
+      if (!password.trim()) {
+        message.innerText = "Please enter your password.";
+        return;
+      }
 
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action =
-    "https://script.google.com/macros/s/AKfycbxqnBMg28QL5TswtZT4WiaqLJ_rRA-fpnju8Jpo8TD2VyRRXSk8SP55kVI-BE51j8HshQ/exec";
-  form.target = "_blank";
+      message.innerText = "Submitting your transcript request...";
+      button.disabled = true;
 
-  const fields = {
-    action: "transcript",
-    studentNo: studentNo,
-    password: password
-  };
+      try {
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = SCRIPT_URL;
+        form.target = "_blank";
+        form.style.display = "none";
 
-  Object.keys(fields).forEach(function(key) {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = key;
-    input.value = fields[key];
-    form.appendChild(input);
-  });
+        const fields = {
+          action: "transcript",
+          studentNo: studentNo,
+          password: password
+        };
 
-  document.body.appendChild(form);
-  form.submit();
-  form.remove();
+        Object.keys(fields).forEach(function(key) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = fields[key];
+          form.appendChild(input);
+        });
 
-  message.innerText =
-    "Your request has been submitted. Check the new tab for your transcript.";
-}
+        document.body.appendChild(form);
+        form.submit();
+        form.remove();
+
+        message.innerText =
+          "Your request was submitted. Check the new tab for the download result.";
+
+      } catch (error) {
+        console.error("Transcript request failed:", error);
+
+        message.innerText =
+          "Unable to submit your request. Please try again.";
+      } finally {
+        button.disabled = false;
+      }
+    }
+
     // LOGOUT
     function logout() {
       localStorage.removeItem("studentData");
