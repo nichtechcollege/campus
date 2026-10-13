@@ -394,6 +394,30 @@
 
           <div class="results-text">
             Access notes, books, and learning materials.
+            <!-- TRANSCRIPT DOWNLOAD -->
+<div class="results-box">
+  <h3>Academic Transcript</h3>
+
+  <div class="results-text">
+    Download your official academic transcript as a PDF.
+  </div>
+
+  <br>
+
+  <button
+    type="button"
+    class="action-btn"
+    onclick="downloadTranscript()"
+  >
+    Download My Transcript
+  </button>
+
+  <p
+    id="transcriptMessage"
+    class="status-message"
+    aria-live="polite"
+  ></p>
+</div>
           </div>
 
           <br>
@@ -516,7 +540,64 @@
           "Your final status is pending. Please check again later.";
       }
     }
+// DOWNLOAD STUDENT TRANSCRIPT
+function downloadTranscript() {
+  if (!data || data.status !== "success") {
+    window.location.replace("portal.html");
+    return;
+  }
 
+  const studentNo = String(data.studentId || "").trim();
+  const message = document.getElementById("transcriptMessage");
+
+  if (!studentNo) {
+    message.innerText =
+      "Your student number could not be identified. Please log in again.";
+    return;
+  }
+
+  const password = prompt(
+    "Enter your student portal password to verify your identity:"
+  );
+
+  if (password === null) {
+    return;
+  }
+
+  if (!password.trim()) {
+    message.innerText = "Please enter your password.";
+    return;
+  }
+
+  message.innerText = "Opening your transcript download...";
+
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action =
+    "https://script.google.com/macros/s/AKfycbxqnBMg28QL5TswtZT4WiaqLJ_rRA-fpnju8Jpo8TD2VyRRXSk8SP55kVI-BE51j8HshQ/exec";
+  form.target = "_blank";
+
+  const fields = {
+    action: "transcript",
+    studentNo: studentNo,
+    password: password
+  };
+
+  Object.keys(fields).forEach(function(key) {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = fields[key];
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+  form.remove();
+
+  message.innerText =
+    "Your request has been submitted. Check the new tab for your transcript.";
+}
     // LOGOUT
     function logout() {
       localStorage.removeItem("studentData");
