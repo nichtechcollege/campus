@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -252,13 +251,11 @@
       }
     }
   </style>
-
 </head>
 
 <body>
 
   <!-- TOP BAR -->
-
   <header class="topbar">
     <div
       class="menu-icon"
@@ -269,14 +266,10 @@
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleMenu();}"
     >☰</div>
 
-```
-<h2>Student Dashboard</h2>
-```
-
+    <h2>Student Dashboard</h2>
   </header>
 
   <!-- MENU -->
-
   <nav id="menu" class="menu">
     <a href="index.html">Home</a>
     <a href="portal.html">Student Portal</a>
@@ -284,192 +277,189 @@
   </nav>
 
   <!-- DASHBOARD -->
-
   <div class="dashboard-container">
     <div class="dashboard-card">
 
-```
-  <!-- COLLEGE HEADER -->
-  <div class="card-header">
-    <img
-      src="images/logo.png"
-      class="logo"
-      alt="Nichtech College Logo"
-    >
+      <!-- COLLEGE HEADER -->
+      <div class="card-header">
+        <img
+          src="images/logo.png"
+          class="logo"
+          alt="Nichtech College Logo"
+        >
 
-    <div class="college-name">
-      NICHTECH TECHNOLOGIES<br>
-      TRAINING COLLEGE
-    </div>
+        <div class="college-name">
+          NICHTECH TECHNOLOGIES<br>
+          TRAINING COLLEGE
+        </div>
 
-    <div class="portal-title">
-      Official Student Portal
-    </div>
-  </div>
-
-  <!-- STUDENT INFORMATION -->
-  <div class="student-section">
-
-    <div class="welcome" id="welcomeName">
-      Welcome Student
-    </div>
-
-    <table>
-      <tbody>
-        <tr>
-          <td class="label">Student Number</td>
-          <td id="studentId"></td>
-        </tr>
-
-        <tr>
-          <td class="label">Program</td>
-          <td id="program"></td>
-        </tr>
-
-        <tr>
-          <td class="label">Intake</td>
-          <td id="intake"></td>
-        </tr>
-
-        <tr>
-          <td class="label">Academic Year</td>
-          <td id="year"></td>
-        </tr>
-
-        <tr>
-          <td class="label">Duration</td>
-          <td id="duration"></td>
-        </tr>
-
-        <tr>
-          <td class="label">Sponsor</td>
-          <td id="sponsor"></td>
-        </tr>
-
-        <tr>
-          <td class="label">Outstanding Balance</td>
-          <td id="balance"></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- RESULTS -->
-    <div class="results-box">
-      <h3>Results</h3>
-      <div class="results-text" id="results">
-        Results not available
-      </div>
-    </div>
-
-    <!-- FINAL STATUS -->
-    <div class="results-box">
-      <h3>Final Status</h3>
-
-      <div class="results-text" id="finalStatus">
-        Status not available
+        <div class="portal-title">
+          Official Student Portal
+        </div>
       </div>
 
-      <p
-        class="status-message"
-        id="statusMessage"
-        aria-live="polite"
-      ></p>
-    </div>
+      <!-- STUDENT INFORMATION -->
+      <div class="student-section">
 
-    <!-- INDUSTRIAL ATTACHMENT -->
-    <div class="results-box">
-      <h3>Industrial Attachment</h3>
+        <div class="welcome" id="welcomeName">
+          Welcome Student
+        </div>
 
-      <div class="results-text">
-        Submit your attachment details here.
+        <table>
+          <tbody>
+            <tr>
+              <td class="label">Student Number</td>
+              <td id="studentId"></td>
+            </tr>
+
+            <tr>
+              <td class="label">Program</td>
+              <td id="program"></td>
+            </tr>
+
+            <tr>
+              <td class="label">Intake</td>
+              <td id="intake"></td>
+            </tr>
+
+            <tr>
+              <td class="label">Academic Year</td>
+              <td id="year"></td>
+            </tr>
+
+            <tr>
+              <td class="label">Duration</td>
+              <td id="duration"></td>
+            </tr>
+
+            <tr>
+              <td class="label">Sponsor</td>
+              <td id="sponsor"></td>
+            </tr>
+
+            <tr>
+              <td class="label">Outstanding Balance</td>
+              <td id="balance"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- RESULTS -->
+        <div class="results-box">
+          <h3>Results</h3>
+
+          <div class="results-text" id="results">
+            Results not available
+          </div>
+        </div>
+
+        <!-- FINAL STATUS -->
+        <div class="results-box">
+          <h3>Final Status</h3>
+
+          <div class="results-text" id="finalStatus">
+            Status not available
+          </div>
+
+          <p
+            class="status-message"
+            id="statusMessage"
+            aria-live="polite"
+          ></p>
+        </div>
+
+        <!-- INDUSTRIAL ATTACHMENT -->
+        <div class="results-box">
+          <h3>Industrial Attachment</h3>
+
+          <div class="results-text">
+            Submit your attachment details here.
+          </div>
+
+          <br>
+
+          <button
+            type="button"
+            class="action-btn"
+            onclick="window.location.href='attachment.html'"
+          >
+            Attachment Registration
+          </button>
+        </div>
+
+        <!-- DIGITAL LIBRARY -->
+        <div class="results-box">
+          <h3>Digital Library</h3>
+
+          <div class="results-text">
+            Access notes, books, and learning materials.
+          </div>
+
+          <br>
+
+          <button
+            type="button"
+            class="action-btn"
+            onclick="window.open('https://sites.google.com/view/nichtechcollegee-library?usp=sharing', '_blank', 'noopener,noreferrer')"
+          >
+            Open Digital Library
+          </button>
+        </div>
+
+        <!-- ACADEMIC TRANSCRIPT -->
+        <div class="results-box">
+          <h3>Academic Transcript</h3>
+
+          <div class="results-text">
+            Download your individual academic transcript as a PDF.
+          </div>
+
+          <br>
+
+          <button
+            type="button"
+            class="action-btn"
+            id="transcriptButton"
+            onclick="downloadTranscript()"
+          >
+            Download My Transcript
+          </button>
+
+          <p
+            id="transcriptMessage"
+            class="status-message"
+            aria-live="polite"
+          ></p>
+        </div>
+
       </div>
 
-      <br>
-
-      <button
-        type="button"
-        class="action-btn"
-        onclick="window.location.href='attachment.html'"
-      >
-        Attachment Registration
-      </button>
-    </div>
-
-    <!-- DIGITAL LIBRARY -->
-    <div class="results-box">
-      <h3>Digital Library</h3>
-
-      <div class="results-text">
-        Access notes, books, and learning materials.
+      <!-- LOGOUT -->
+      <div class="btn-area">
+        <button
+          type="button"
+          class="logout-btn"
+          onclick="logout()"
+        >
+          Logout
+        </button>
       </div>
 
-      <br>
-
-      <button
-        type="button"
-        class="action-btn"
-        onclick="window.open('https://sites.google.com/view/nichtechcollegee-library?usp=sharing', '_blank', 'noopener,noreferrer')"
-      >
-        Open Digital Library
-      </button>
     </div>
-
-    <!-- ACADEMIC TRANSCRIPT -->
-    <div class="results-box">
-      <h3>Academic Transcript</h3>
-
-      <div class="results-text">
-        Download your individual academic transcript as a PDF.
-      </div>
-
-      <br>
-
-      <button
-        type="button"
-        class="action-btn"
-        id="transcriptButton"
-        onclick="downloadTranscript()"
-      >
-        Download My Transcript
-      </button>
-
-      <p
-        id="transcriptMessage"
-        class="status-message"
-        aria-live="polite"
-      ></p>
-    </div>
-
-  </div>
-
-  <!-- LOGOUT -->
-  <div class="btn-area">
-    <button
-      type="button"
-      class="logout-btn"
-      onclick="logout()"
-    >
-      Logout
-    </button>
-  </div>
-
-</div>
-```
-
   </div>
 
   <!-- FOOTER -->
-
   <div class="footer">
     © 2026 Nichtech Technologies Training College
   </div>
 
   <!-- JAVASCRIPT -->
-
   <script>
+
     // APPS SCRIPT WEB APP URL
     const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbwM5dwST8GJ-1CyWcqP_59FICBw_QPOaNeD_sLSUuZ_fqc8nrQJ_wKhyLH6KWepbuLjpA/exec";
+
 
     // NAVIGATION MENU
     function toggleMenu() {
@@ -482,6 +472,7 @@
       });
     });
 
+
     // LOAD STUDENT DATA
     let data = null;
 
@@ -491,8 +482,11 @@
       console.error("Unable to read student data:", error);
     }
 
+
     if (!data || data.status !== "success") {
+
       window.location.replace("portal.html");
+
     } else {
 
       // STUDENT INFORMATION
@@ -520,9 +514,11 @@
       document.getElementById("balance").innerText =
         data.balance || "";
 
+
       // RESULTS
       document.getElementById("results").innerText =
         data.results || "Results not released";
+
 
       // FINAL STATUS
       const rawStatus = String(data.finalStatus || "").trim();
@@ -534,9 +530,14 @@
       const statusMessageElement =
         document.getElementById("statusMessage");
 
-      if (finalStatus === "GRADUANT") {
 
-        finalStatusElement.innerText = "GRADUANT";
+      // RECOGNISE BOTH GRADUAND AND GRADUANT
+      if (
+        finalStatus === "GRADUANT" ||
+        finalStatus === "GRADUAND"
+      ) {
+
+        finalStatusElement.innerText = "GRADUAND";
 
         statusMessageElement.innerText =
           "CONGRATULATIONS! SEE YOU ON THE GRADUATION DAY. " +
@@ -549,54 +550,90 @@
         statusMessageElement.innerText =
           "Please contact the college administration for further guidance.";
 
-      } else {
+      } else if (
+        finalStatus === "PENDING" ||
+        finalStatus === ""
+      ) {
 
         finalStatusElement.innerText = "PENDING";
 
         statusMessageElement.innerText =
           "Your final status is pending. Please check again later.";
+
+      } else {
+
+        finalStatusElement.innerText = rawStatus;
+
+        statusMessageElement.innerText =
+          "Please contact the college administration for further guidance.";
+
       }
+
     }
+
 
     // DOWNLOAD STUDENT TRANSCRIPT
     function downloadTranscript() {
+
       if (!data || data.status !== "success") {
+
         window.location.replace("portal.html");
         return;
+
       }
 
       const studentNo = String(data.studentId || "").trim();
-      const message = document.getElementById("transcriptMessage");
-      const button = document.getElementById("transcriptButton");
+
+      const message =
+        document.getElementById("transcriptMessage");
+
+      const button =
+        document.getElementById("transcriptButton");
+
 
       if (!studentNo) {
+
         message.innerText =
           "Your student number could not be identified. Please log in again.";
+
         return;
+
       }
+
 
       const password = prompt(
         "Enter your student portal password to verify your identity:"
       );
 
+
       if (password === null) {
         return;
       }
 
+
       if (!password.trim()) {
+
         message.innerText = "Please enter your password.";
         return;
+
       }
 
-      message.innerText = "Submitting your transcript request...";
+
+      message.innerText =
+        "Submitting your transcript request...";
+
       button.disabled = true;
 
+
       try {
+
         const form = document.createElement("form");
+
         form.method = "POST";
         form.action = SCRIPT_URL;
         form.target = "_blank";
         form.style.display = "none";
+
 
         const fields = {
           action: "transcript",
@@ -604,36 +641,56 @@
           password: password
         };
 
+
         Object.keys(fields).forEach(function(key) {
+
           const input = document.createElement("input");
+
           input.type = "hidden";
           input.name = key;
           input.value = fields[key];
+
           form.appendChild(input);
+
         });
 
+
         document.body.appendChild(form);
+
         form.submit();
+
         form.remove();
+
 
         message.innerText =
           "Your request was submitted. Check the new tab for the download result.";
 
+
       } catch (error) {
+
         console.error("Transcript request failed:", error);
 
         message.innerText =
           "Unable to submit your request. Please try again.";
+
       } finally {
+
         button.disabled = false;
+
       }
+
     }
+
 
     // LOGOUT
     function logout() {
+
       localStorage.removeItem("studentData");
+
       window.location.href = "portal.html";
+
     }
+
   </script>
 
 </body>
