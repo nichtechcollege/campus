@@ -34,6 +34,7 @@
     <p class="subtitle">Login to access your dashboard</p>
 
     <form id="loginForm">
+
       <input
         type="text"
         id="studentNo"
@@ -53,6 +54,7 @@
       <button type="submit" id="loginButton" class="primary-btn">
         Login
       </button>
+
     </form>
 
     <p id="message" class="error" role="status" aria-live="polite"></p>
@@ -65,8 +67,11 @@
   </footer>
 
   <script>
-    // GOOGLE APPS SCRIPT WEB APP URL
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqnBMg28QL5TswtZT4WiaqLJ_rRA-fpnju8Jpo8TD2VyRRXSk8SP55kVI-BE51j8HshQ/exec";
+
+    // GOOGLE APPS SCRIPT WEB APP URL - VERSION 38
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbwM5dwST8GJ-1CyWcqP_59FICBw_QPOaNeD_sLSUuZ_fqc8nrQJ_wKhyLH6KWepbuLjpA/exec";
+
 
     // MENU
     function toggleMenu() {
@@ -79,95 +84,168 @@
       });
     });
 
+
     // STUDENT LOGIN USING JSONP
     document.getElementById("loginForm").addEventListener("submit", function(event) {
+
       event.preventDefault();
 
-      const studentNo = document.getElementById("studentNo").value.trim();
-      const password = document.getElementById("password").value;
-      const message = document.getElementById("message");
-      const loginButton = document.getElementById("loginButton");
+      const studentNo =
+        document.getElementById("studentNo").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("message");
+
+      const loginButton =
+        document.getElementById("loginButton");
+
 
       if (!studentNo || !password) {
+
         message.style.color = "red";
-        message.textContent = "Please enter your student number and password.";
+
+        message.textContent =
+          "Please enter your student number and password.";
+
         return;
+
       }
 
+
       message.style.color = "#0b5e2b";
+
       message.textContent = "Logging in...";
+
       loginButton.disabled = true;
+
       loginButton.textContent = "Please wait...";
 
-      // Create a unique callback for this login request.
+
+      // UNIQUE CALLBACK
       const callbackName =
-        "nichtechLoginCallback_" + Date.now() + "_" +
+        "nichtechLoginCallback_" +
+        Date.now() + "_" +
         Math.floor(Math.random() * 100000);
+
 
       const script = document.createElement("script");
 
+
+      // TIMEOUT
       const timeout = window.setTimeout(function() {
+
         cleanup();
 
         message.style.color = "red";
+
         message.textContent =
           "The request timed out. Please try again.";
 
         resetButton();
+
       }, 20000);
 
+
+      // CLEANUP
       function cleanup() {
+
         window.clearTimeout(timeout);
+
         script.remove();
 
         try {
+
           delete window[callbackName];
+
         } catch (error) {
+
           window[callbackName] = undefined;
+
         }
+
       }
 
+
+      // RESET BUTTON
       function resetButton() {
+
         loginButton.disabled = false;
+
         loginButton.textContent = "Login";
+
       }
 
+
+      // LOGIN RESPONSE
       window[callbackName] = function(data) {
+
         cleanup();
 
-        if (data && data.success === true && data.status === "success") {
-          localStorage.setItem("studentData", JSON.stringify(data));
+
+        if (
+          data &&
+          data.success === true &&
+          data.status === "success"
+        ) {
+
+          // SAVE STUDENT INFORMATION
+          localStorage.setItem(
+            "studentData",
+            JSON.stringify(data)
+          );
+
+          // OPEN DASHBOARD
           window.location.href = "dashboard.html";
+
           return;
+
         }
 
+
         message.style.color = "red";
+
         message.textContent =
           data && data.message
             ? data.message
             : "Invalid student number or password.";
 
         resetButton();
+
       };
 
+
+      // CONNECTION ERROR
       script.onerror = function() {
+
         cleanup();
 
         message.style.color = "red";
+
         message.textContent =
           "Unable to connect to the student portal. Please try again.";
 
         resetButton();
+
       };
 
-      const url = SCRIPT_URL +
+
+      // BUILD LOGIN REQUEST
+      const url =
+        SCRIPT_URL +
         "?studentNo=" + encodeURIComponent(studentNo) +
         "&password=" + encodeURIComponent(password) +
         "&callback=" + encodeURIComponent(callbackName);
 
+
       script.src = url;
+
       document.body.appendChild(script);
+
     });
+
   </script>
 
 </body>
